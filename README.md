@@ -7,7 +7,7 @@ The Most beautiful java code ever written for [AOC-2023](https://adventofcode.co
 Guaranteed I will finish all days.
 
 ## How to use
-Each challenge is in its own project under `[days/`
+Each challenge is in its own project under `days/`
 
 #### Build
 `./gradlew build`

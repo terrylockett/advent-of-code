@@ -4,11 +4,11 @@ includeSubprojectsInDir('libs')
 includeSubprojectsInDir('days')
 
 def includeSubprojectsInDir(String dirName) {
-    new File(dirName).traverse(
+    new File("${rootDir}/${dirName}").traverse(
             type: groovy.io.FileType.DIRECTORIES) { subDir ->
         if (new File(subDir, "build.gradle").exists()) {
             include "${dirName}:${subDir.name}"
-            findProject(":${dirName}:${subDir.name}")?.name = subDir.name
+            project(":${dirName}:${subDir.name}")?.name = subDir.name
         }
     }
 }
