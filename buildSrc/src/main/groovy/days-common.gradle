@@ -1,20 +1,21 @@
+//common gradle config for the sub projects
+
 plugins {
-    id 'java'
     id 'application'
 }
 
-group = 'ca.terrylockett.aoc2023'
+group = 'ca.terrylockett.aoc'
 version = '1.0-SNAPSHOT'
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
+    implementation project(':common:input-file-finder')
     testImplementation libs.junitJupiterCore
-    implementation project(':input-file-finder')
 }
 
 test {
     useJUnitPlatform()
+}
+
+repositories {
+    mavenCentral()
 }

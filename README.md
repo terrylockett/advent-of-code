@@ -1,21 +1,18 @@
-# AOC 2023
+# Advent Of Code
 
-The Most beautiful java code ever written for [AOC-2023](https://adventofcode.com/2023)
+The Most beautiful java code ever written for [AOC](https://adventofcode.com)
 
-<img src=".readme/media/aoc2023.png" width="400" style="border-radius: 5px">
+<img src="https://terrylockettca.s3.us-east-2.amazonaws.com/images/aoc2023.png" width="400" style="border-radius: 5px">
 
 Guaranteed I will finish all days.
 
-## How to use
-Each challenge is in its own project under `days/`
+## Usage
 
 #### Build
 `./gradlew build`
 
 #### Run
-All projects: `./gradlew run`
-
-Single project: `./gradlew day01:run`
+`./gradlew 2023:day01:run`
 
 #### Test
 `./gradlew test`

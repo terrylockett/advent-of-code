@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+group = 'ca.terrylockett.aoc'
+version = '1.0-SNAPSHOT'
+
+
+dependencies {
+    testImplementation libs.junitJupiterCore
+}
+
+test {
+    useJUnitPlatform()
+}
+
+repositories {
+    mavenCentral()
+}

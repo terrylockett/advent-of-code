@@ -1,0 +1,8 @@
+plugins {
+    id 'days-common'
+}
+
+
+application {
+    mainClass = 'ca.terrylockett.aoc2022.day10.Day10Runner'
+}

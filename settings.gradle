@@ -1,14 +1,16 @@
-rootProject.name = 'AdventOfCode2023'
+rootProject.name = 'AdventOfCode'
 
-includeSubprojectsInDir('libs')
-includeSubprojectsInDir('days')
+includeSubprojects('2022')
+includeSubprojects('2023')
+includeSubprojects("common")
 
-def includeSubprojectsInDir(String dirName) {
-    new File("$rootDir/$dirName").traverse(
+def includeSubprojects(String dirName) {
+    new File("$rootDir/src/$dirName").traverse(
             type: groovy.io.FileType.DIRECTORIES) { subDir ->
         if (new File(subDir, "build.gradle").exists()) {
-            include subDir.name
-            project(":$subDir.name").projectDir = new File("$rootDir/$dirName/$subDir.name")
+            include "$dirName:$subDir.name"
+            project(":$dirName:$subDir.name").projectDir = new File("$rootDir/src/$dirName/$subDir.name")
         }
     }
 }
+
