@@ -10,7 +10,7 @@ class TestInputFileFinder {
 
 	@Test
 	void testFindFileFromResources() throws URISyntaxException {
-		String expected = "/Users/terry/Workspaces/Misc/AdventOfCode2023/libs/InputFileFinder/build/resources/test/abc.txt";
+		String expected = "/Users/terry/Workspaces/Misc/AdventOfCode2023/libs/input-file-finder/build/resources/test/abc.txt";
 
 		String path = InputFileFinder.getFilePath(this.getClass().getClassLoader(), "abc.txt");
 
