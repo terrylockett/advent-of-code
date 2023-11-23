@@ -1,0 +1,5 @@
+plugins {
+    id 'days-common'
+}
+
+group = 'ca.terrylockett.aoc2023.day01'

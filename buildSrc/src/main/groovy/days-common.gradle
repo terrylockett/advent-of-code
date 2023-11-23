@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+group = 'ca.terrylockett.aoc2023'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation libs.junitJupiterCore
+    implementation project(':libs:InputFileFinder')
+}
+
+test {
+    useJUnitPlatform()
+}
