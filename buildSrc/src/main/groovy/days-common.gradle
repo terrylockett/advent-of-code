@@ -12,7 +12,7 @@ repositories {
 
 dependencies {
     testImplementation libs.junitJupiterCore
-    implementation project(':libs:InputFileFinder')
+    implementation project(':InputFileFinder')
 }
 
 test {
