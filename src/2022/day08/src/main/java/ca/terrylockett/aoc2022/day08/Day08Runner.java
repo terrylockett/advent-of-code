@@ -7,16 +7,14 @@ import java.net.URISyntaxException;
 
 public class Day08Runner {
 
-    public static void main(String[] args) throws IOException, URISyntaxException {
-        String inputFile = InputFileFinder.getFilePath(Day08Runner.class.getClassLoader(), "input.txt");
-        
-        int part1 = TreeHouseLocator.getNumberOfVisibleTrees_Part1(inputFile);
-        System.out.println("Day08 Part01: "+ part1);
-        
-        int part2 = TreeHouseLocator.getMaxScenicScore_Part2(inputFile);
-        System.out.println("Day08 Part02: "+ part2);
-    }
-    
-    
-    
+	public static void main(String[] args) throws IOException, URISyntaxException {
+		String inputFile = InputFileFinder.getFilePath(Day08Runner.class.getClassLoader(), "input.txt");
+
+		int part1 = TreeHouseLocator.getNumberOfVisibleTrees_Part1(inputFile);
+		System.out.println("Day08 Part01: " + part1);
+
+		int part2 = TreeHouseLocator.getMaxScenicScore_Part2(inputFile);
+		System.out.println("Day08 Part02: " + part2);
+	}
+
 }

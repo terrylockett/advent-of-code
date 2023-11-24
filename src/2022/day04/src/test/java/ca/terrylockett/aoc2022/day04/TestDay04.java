@@ -10,22 +10,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestDay04 {
 
-    static final String TEST_FILE_NAME = "test_input.txt";
-    static String testFilePath = "";
+	static final String TEST_FILE_NAME = "test_input.txt";
+	static String testFilePath = "";
 
-    @BeforeAll
-    public static void setup() throws URISyntaxException {
-        testFilePath = InputFileFinder.getFilePath(TestDay04.class.getClassLoader(), TEST_FILE_NAME);
-    }
+	@BeforeAll
+	public static void setup() throws URISyntaxException {
+		testFilePath = InputFileFinder.getFilePath(TestDay04.class.getClassLoader(), TEST_FILE_NAME);
+	}
 
+	@Test
+	public void day4Part1() throws Exception {
+		assertEquals(2, CampAssignmentCleaner.findAssignmentsErrorsCount(testFilePath));
+	}
 
-    @Test
-    public void day4Part1() throws Exception {
-        assertEquals(2, CampAssignmentCleaner.findAssignmentsErrorsCount(testFilePath));
-    }
-
-    @Test
-    public void day4Part2() throws Exception {
-        assertEquals(4, CampAssignmentCleaner.findAssignmentsErrorsCount(testFilePath, true));
-    }
+	@Test
+	public void day4Part2() throws Exception {
+		assertEquals(4, CampAssignmentCleaner.findAssignmentsErrorsCount(testFilePath, true));
+	}
 }

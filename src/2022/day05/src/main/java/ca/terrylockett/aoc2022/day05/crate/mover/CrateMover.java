@@ -8,32 +8,29 @@ import java.util.Map;
 
 public abstract class CrateMover {
 
-    //yes... I'm using Strings of numbers for the keys
-    protected Map<String, CrateStack> stacks;
+	// yes... I'm using Strings of numbers for the keys
+	protected Map<String, CrateStack> stacks;
 
-    
-    public CrateMover(int numStacks) {
-        stacks = new HashMap<>();
-        for (int i = 1; i <= numStacks; i++) {
-            stacks.put(String.valueOf(i), new CrateStack());
-        }
-    }
+	public CrateMover(int numStacks) {
+		stacks = new HashMap<>();
+		for (int i = 1; i <= numStacks; i++) {
+			stacks.put(String.valueOf(i), new CrateStack());
+		}
+	}
 
+	public abstract void moveCrate(int numCrates, String source, String target);
 
-    public abstract void moveCrate(int numCrates, String source, String target);
-    
-    
-    public void initCrate(String stack, Crate crate) {
-        stacks.get(stack).addLast(crate);
-    }
-    
-    public String getResult() {
-        String result = "";
+	public void initCrate(String stack, Crate crate) {
+		stacks.get(stack).addLast(crate);
+	}
 
-        for (String key : stacks.keySet()) {
-            result += stacks.get(key).peekFirst().getName();
-        }
+	public String getResult() {
+		String result = "";
 
-        return result;
-    }
+		for (String key : stacks.keySet()) {
+			result += stacks.get(key).peekFirst().getName();
+		}
+
+		return result;
+	}
 }

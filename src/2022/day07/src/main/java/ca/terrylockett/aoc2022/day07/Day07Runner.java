@@ -7,14 +7,14 @@ import java.net.URISyntaxException;
 
 public class Day07Runner {
 
-    public static void main(String[] args) throws URISyntaxException, FileNotFoundException {
-        String inputFile = InputFileFinder.getFilePath(Day07Runner.class.getClassLoader(), "input.txt");
-        
-        long part01 = ElfComputerDevice.part01(inputFile);
-        System.out.println("Day 07 part 01: " + part01);
+	public static void main(String[] args) throws URISyntaxException, FileNotFoundException {
+		String inputFile = InputFileFinder.getFilePath(Day07Runner.class.getClassLoader(), "input.txt");
 
-        long part02 = ElfComputerDevice.part02(inputFile);
-        System.out.println("Day 07 part 02: " + part02);
-    }
-    
+		long part01 = ElfComputerDevice.part01(inputFile);
+		System.out.println("Day 07 part 01: " + part01);
+
+		long part02 = ElfComputerDevice.part02(inputFile);
+		System.out.println("Day 07 part 02: " + part02);
+	}
+
 }

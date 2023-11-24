@@ -7,51 +7,43 @@ import java.util.regex.Pattern;
 
 public class CampAssignmentCleaner {
 
-    private static final Pattern ASSIGN_PAT = Pattern.compile("(\\d+)-(\\d+),(\\d+)-(\\d+)");
+	private static final Pattern ASSIGN_PAT = Pattern.compile("(\\d+)-(\\d+),(\\d+)-(\\d+)");
 
+	static int findAssignmentsErrorsCount(String filePath) throws Exception {
+		return findAssignmentsErrorsCount(filePath, false);
+	}
 
+	public static int findAssignmentsErrorsCount(String filePath, boolean checkOverlaps) throws Exception {
 
-    static int findAssignmentsErrorsCount(String filePath) throws Exception {
-        return findAssignmentsErrorsCount(filePath, false);
-    }
+		int duplicateAssignmentCount = 0;
 
+		Scanner scan = new Scanner(new FileInputStream(filePath));
 
-    public static int findAssignmentsErrorsCount(String filePath, boolean checkOverlaps) throws Exception {
+		Matcher m;
 
-        int duplicateAssignmentCount = 0;
+		while (scan.hasNextLine()) {
+			m = ASSIGN_PAT.matcher(scan.nextLine());
+			if (!m.find()) {
+				throw new Exception("REGEX DIDN'T MATCH AAHHHHHH!");
+			}
 
-        Scanner scan = new Scanner(new FileInputStream(filePath));
+			Assignment first = new Assignment(Integer.parseInt(m.group(1)), Integer.parseInt(m.group(2)));
+			Assignment second = new Assignment(Integer.parseInt(m.group(3)), Integer.parseInt(m.group(4)));
 
-        Matcher m;
+			if (checkAssignmentErrors(first, second, checkOverlaps)) {
+				duplicateAssignmentCount++;
+			}
+		}
 
-        while(scan.hasNextLine()) {
-            m = ASSIGN_PAT.matcher(scan.nextLine());
-            if(!m.find()) {
-                throw new Exception("REGEX DIDN'T MATCH AAHHHHHH!");
-            }
+		return duplicateAssignmentCount;
+	}
 
-            Assignment first = new Assignment(Integer.parseInt(m.group(1)), Integer.parseInt(m.group(2)));
-            Assignment second = new Assignment(Integer.parseInt(m.group(3)), Integer.parseInt(m.group(4)));
+	private static boolean checkAssignmentErrors(Assignment a1, Assignment a2, boolean checkOverlaps) {
+		if (checkOverlaps) {
+			return a1.overlapsRange(a2) || a2.overlapsRange(a1);
+		}
 
-            if(checkAssignmentErrors(first, second, checkOverlaps)) {
-                duplicateAssignmentCount++;
-            }
-        }
-
-        return duplicateAssignmentCount;
-    }
-
-
-    private static boolean checkAssignmentErrors(Assignment a1, Assignment a2, boolean checkOverlaps) {
-        if(checkOverlaps) {
-            return a1.overlapsRange(a2) || a2.overlapsRange(a1);
-        }
-
-        return a1.containsRange(a2) || a2.containsRange(a1);
-    }
-
-
-
-
+		return a1.containsRange(a2) || a2.containsRange(a1);
+	}
 
 }
