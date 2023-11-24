@@ -2,3 +2,10 @@ plugins {
     id 'groovy-gradle-plugin'
 }
 
+dependencies {
+    implementation libs.spotless
+}
+
+repositories {
+    mavenCentral()
+}

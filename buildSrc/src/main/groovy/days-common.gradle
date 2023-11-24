@@ -1,7 +1,7 @@
 //common gradle config for the sub projects
-
 plugins {
     id 'application'
+    id 'com.diffplug.spotless'
 }
 
 group = 'ca.terrylockett.aoc'
@@ -12,10 +12,18 @@ dependencies {
     testImplementation libs.junitJupiterCore
 }
 
-test {
-    useJUnitPlatform()
-}
+
 
 repositories {
     mavenCentral()
+}
+
+spotless {
+    java {
+        eclipse()
+    }
+}
+
+test {
+    useJUnitPlatform()
 }

@@ -1,8 +1,5 @@
-[versions]
-jupiter-version = "5.9.3"
-
-
 [libraries]
 commonsIo = { module = 'commons-io:commons-io', version = '2.6' }
 guava = { module = "com.google.guava:guava", version = "31.1-jre" }
-junitJupiterCore = { module = "org.junit.jupiter:junit-jupiter", version.ref = "jupiter-version" }
+junitJupiterCore = { module = "org.junit.jupiter:junit-jupiter", version = "5.9.3" }
+spotless = { module = 'com.diffplug.spotless:spotless-plugin-gradle', version = '6.22.0' }
