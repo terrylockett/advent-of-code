@@ -40,7 +40,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Test%3$s {
 
-    static final String TEST_FILE_NAME = "test_input.txt";
+    static final String TEST_FILE_NAME = "test-input.txt";
 
     static String testFilePath = "";
 
@@ -72,25 +72,28 @@ tasks.register("newModule") {
         throw new GradleException("$rootDir/src/$year does not exist.")
     }
 
-    //create project directories
-    File projectDir = new File("$rootDir/src/$year/$projectName/")
-    new File("$projectDir.path/src/main/resources/").mkdir()
-    new File("$projectDir.path/src/test/resources/").mkdir()
-    File srcMain = new File("$projectDir.path/src/main/java/ca/terrylockett/aoc$year/$projectName")
-    File srcTest = new File("$projectDir.path/src/test/java/ca/terrylockett/aoc$year/$projectName")
-    srcMain.mkdirs()
-    srcTest.mkdirs()
-
+    File projectDir = createDir("$rootDir/src/$year/$projectName/")
+    File srcMainJava = createDir("$projectDir.path/src/main/java/ca/terrylockett/aoc$year/$projectName")
+    File srcTestJava = createDir("$projectDir.path/src/test/java/ca/terrylockett/aoc$year/$projectName")
+    File srcMainResource = createDir("$projectDir.path/src/main/resources/")
+    File srcTestResource = createDir("$projectDir.path/src/test/resources/")
 
     createAndPopulateFile("$projectDir.path/build.gradle", year, projectName, BUILD_DOT_GRADLE_CONTENTS)
-    createAndPopulateFile("$srcMain/${projectName.capitalize()}Runner.java", year, projectName, MAIN_CLASS_CONTENTS)
-    createAndPopulateFile("$srcTest/Test${projectName.capitalize()}.java", year, projectName, TEST_CLASS_CONTENTS)
+    createAndPopulateFile("$srcMainJava/${projectName.capitalize()}Runner.java", year, projectName, MAIN_CLASS_CONTENTS)
+    createAndPopulateFile("$srcTestJava/Test${projectName.capitalize()}.java", year, projectName, TEST_CLASS_CONTENTS)
+    new File("$srcMainResource/input.txt").createNewFile()
+    new File("$srcTestResource/test-input.txt").createNewFile()
 }
 
+static File createDir(String dirPath) {
+    File dir = new File(dirPath)
+    dir.mkdirs()
+    return dir
+}
 
 static def createAndPopulateFile(String filePath, String year, String projectName, String fileContents) {
-    File testClassFile = new File(filePath)
-    if (testClassFile.createNewFile()) {
-        testClassFile.write String.format(fileContents, year, projectName, projectName.capitalize())
+    File file = new File(filePath)
+    if (file.createNewFile()) {
+        file.write String.format(fileContents, year, projectName, projectName.capitalize())
     }
 }
