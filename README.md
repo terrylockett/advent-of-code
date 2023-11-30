@@ -1,4 +1,4 @@
-# Advent Of Code
+# Advent of Code
 
 The Most beautiful java code ever written for [AOC](https://adventofcode.com)
 
@@ -13,6 +13,9 @@ Guaranteed I will finish all days.
 
 #### Run
 `./gradlew 2023:day01:run`
+
+#### Lint
+`./gradlew 2023:day01:spotlessApply`
 
 #### Test
 `./gradlew test`

@@ -1,1 +1,3 @@
-//see buildSrc -> days-common
+plugins {
+    id 'create-new-module'
+}

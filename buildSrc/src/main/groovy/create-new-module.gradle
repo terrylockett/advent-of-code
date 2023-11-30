@@ -1,0 +1,96 @@
+def final BUILD_DOT_GRADLE_CONTENTS = '''
+plugins {
+    id 'days-common\'
+}
+
+application {
+    mainClass = 'ca.terrylockett.aoc%s.%s.%sRunner\'
+}
+'''.replaceFirst("\n", "")
+
+
+def final MAIN_CLASS_CONTENTS = '''
+package ca.terrylockett.aoc%1$s.%2$s;
+
+import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder;
+
+public class %3$sRunner {
+
+    static final String INPUT_FILE_NAME = "input.txt";
+
+    public static void main(String[] args) throws Exception {
+        String inputFilePath = InputFileFinder.getFilePath(%3$sRunner.class.getClassLoader(), INPUT_FILE_NAME);
+        
+        System.out.println("Hello");
+    }
+}
+'''.replaceFirst("\n", "")
+
+
+def final TEST_CLASS_CONTENTS = '''
+package ca.terrylockett.aoc%1$s.%2$s;
+
+import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import java.net.URISyntaxException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class Test%3$s {
+
+    static final String TEST_FILE_NAME = "test_input.txt";
+
+    static String testFilePath = "";
+
+    @BeforeAll
+    static void setup() throws URISyntaxException {
+        testFilePath = InputFileFinder.getFilePath(Test%3$s.class.getClassLoader(), TEST_FILE_NAME);
+    }
+
+    @Test
+    void test%3$spart1() {
+        assertEquals(true, true);
+    }
+}
+'''.replaceFirst("\n", "")
+
+
+tasks.register("newModule") {
+    group "Advent of Code"
+
+    if (!project.hasProperty("moduleName") || !moduleName.contains(":")) {
+        throw new GradleException("Missing moduleName paramter. specify newModule by using: './gradlew newModule -PnewModule=<year>:<name>'")
+    }
+
+    var moduleTokens = moduleName.split(":");
+    String year = moduleTokens[0]
+    String projectName = moduleTokens[1]
+
+    if (!new File("$rootDir/src/$year").exists()) {
+        throw new GradleException("$rootDir/src/$year does not exist.")
+    }
+
+    //create project directories
+    File projectDir = new File("$rootDir/src/$year/$projectName/")
+    new File("$projectDir.path/src/main/resources/").mkdir()
+    new File("$projectDir.path/src/test/resources/").mkdir()
+    File srcMain = new File("$projectDir.path/src/main/java/ca/terrylockett/aoc$year/$projectName")
+    File srcTest = new File("$projectDir.path/src/test/java/ca/terrylockett/aoc$year/$projectName")
+    srcMain.mkdirs()
+    srcTest.mkdirs()
+
+
+    createAndPopulateFile("$projectDir.path/build.gradle", year, projectName, BUILD_DOT_GRADLE_CONTENTS)
+    createAndPopulateFile("$srcMain/${projectName.capitalize()}Runner.java", year, projectName, MAIN_CLASS_CONTENTS)
+    createAndPopulateFile("$srcTest/Test${projectName.capitalize()}.java", year, projectName, TEST_CLASS_CONTENTS)
+}
+
+
+static def createAndPopulateFile(String filePath, String year, String projectName, String fileContents) {
+    File testClassFile = new File(filePath)
+    if (testClassFile.createNewFile()) {
+        testClassFile.write String.format(fileContents, year, projectName, projectName.capitalize())
+    }
+}
