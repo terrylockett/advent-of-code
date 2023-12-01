@@ -1,7 +1,7 @@
 package ca.terrylockett.aoc2023.day01
 
 import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
@@ -17,12 +17,13 @@ class TestDay01 {
 
   @BeforeAll
   fun setup() {
-    testFilePath =
-        InputFileFinder.getFilePath(TestDay01::class.java.getClassLoader(), TEST_FILE_NAME)
+    testFilePath = InputFileFinder.getInputFilePath(TEST_FILE_NAME).orElseThrow()
   }
 
   @Test
   fun testDay01() {
-    assertTrue(true)
+    val document = CalibrationDocument(testFilePath)
+
+    assertEquals(142, document.calibrationValuesSum())
   }
 }

@@ -4,5 +4,7 @@ import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder
 
 fun main() {
   val inputFile: String = InputFileFinder.getInputFilePath("input.txt").orElseThrow()
-  println("hi")
+  val calibrationDocument = CalibrationDocument(inputFile)
+  
+  println("2023 day01: ${calibrationDocument.calibrationValuesSum()}")
 }
