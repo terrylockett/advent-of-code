@@ -3,5 +3,5 @@ plugins {
 }
 
 application {
-    mainClass.set("ca.terrylockett.aoc2023.day01.Day01Runner")
+    mainClass.set("ca.terrylockett.aoc2023.day01.Day01RunnerKt")
 }
