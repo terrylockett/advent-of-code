@@ -26,7 +26,6 @@ spotless {
         eclipse()
     }
     kotlin {
-        ktfmt()
+        ktlint()
     }
-    
 }

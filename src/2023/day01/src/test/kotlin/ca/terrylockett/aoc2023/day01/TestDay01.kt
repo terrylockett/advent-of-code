@@ -2,28 +2,27 @@ package ca.terrylockett.aoc2023.day01
 
 import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class TestDay01 {
+    companion object {
+        const val PART1_TEST_FILE_NAME = "test-input.txt"
+        const val PART2_TEST_FILE_NAME = "test-input2.txt"
+    }
 
-  companion object {
-    const val TEST_FILE_NAME = "test-input.txt"
-  }
+    @Test
+    fun testDay01_part1() {
+        val part1InputFile = InputFileFinder.getInputFilePath(PART1_TEST_FILE_NAME).orElseThrow()
 
-  private var testFilePath = ""
+        assertEquals(142, CalibrationDocument.basicCalibration(part1InputFile))
+    }
 
-  @BeforeAll
-  fun setup() {
-    testFilePath = InputFileFinder.getInputFilePath(TEST_FILE_NAME).orElseThrow()
-  }
+    @Test
+    fun testDay01_part2() {
+        val part2InputFile = InputFileFinder.getInputFilePath(PART2_TEST_FILE_NAME).orElseThrow()
 
-  @Test
-  fun testDay01() {
-    val document = CalibrationDocument(testFilePath)
-
-    assertEquals(142, document.calibrationValuesSum())
-  }
+        assertEquals(281, CalibrationDocument.fancyCalibration(part2InputFile))
+    }
 }
