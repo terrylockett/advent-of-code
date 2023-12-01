@@ -19,3 +19,6 @@ Guaranteed I will finish all days.
 
 #### Test
 `./gradlew test`
+
+#### Create new Module
+`./gradlew newModule -PmoduleName=2023:day02`

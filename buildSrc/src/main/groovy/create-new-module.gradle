@@ -64,7 +64,7 @@ tasks.register("newModule") {
         throw new GradleException("Missing moduleName paramter. specify newModule by using: './gradlew newModule -PnewModule=<year>:<name>'")
     }
 
-    var moduleTokens = moduleName.split(":");
+    var moduleTokens = moduleName.split(":")
     String year = moduleTokens[0]
     String projectName = moduleTokens[1]
 
