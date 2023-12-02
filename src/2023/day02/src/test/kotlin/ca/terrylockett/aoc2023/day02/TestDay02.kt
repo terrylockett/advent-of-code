@@ -17,4 +17,11 @@ class TestDay02 {
 
         assertEquals(8, CubeGame.playGamePart1(inputFilePath))
     }
+
+    @Test
+    fun part2() {
+        val inputFilePath = InputFileFinder.getInputFilePath(PART1_TEST_FILE_NAME).orElseThrow()
+
+        assertEquals(2286, CubeGame.playGamePart2(inputFilePath))
+    }
 }
