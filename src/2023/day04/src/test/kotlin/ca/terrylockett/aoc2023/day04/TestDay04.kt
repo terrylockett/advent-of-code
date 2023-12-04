@@ -17,4 +17,11 @@ class TestDay04 {
 
         assertEquals(13, part1GetPoints(inputFilePath))
     }
+
+    @Test
+    fun part2() {
+        val inputFilePath = InputFileFinder.getInputFilePath(TEST_FILE_NAME).orElseThrow()
+
+        assertEquals(30, part2GetPoints(inputFilePath))
+    }
 }
