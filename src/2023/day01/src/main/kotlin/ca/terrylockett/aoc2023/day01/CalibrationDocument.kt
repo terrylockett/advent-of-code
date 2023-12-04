@@ -2,6 +2,7 @@ package ca.terrylockett.aoc2023.day01
 
 import java.io.File
 import java.util.regex.Pattern
+import kotlin.streams.toList
 
 class CalibrationDocument {
     companion object {
