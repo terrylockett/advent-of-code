@@ -1,6 +1,6 @@
 # Advent of Code
 
-The Most beautiful java code ever written for [AOC](https://adventofcode.com)
+The Most beautiful kotlin and java code ever written for [AOC](https://adventofcode.com)
 
 <img src="https://terrylockettca.s3.us-east-2.amazonaws.com/images/aoc2023.png" width="400" style="border-radius: 5px" alt="Cool pic of AOC holding a piece of paper">
 
