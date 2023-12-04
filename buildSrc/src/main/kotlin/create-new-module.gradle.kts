@@ -5,11 +5,16 @@ tasks.register("newModule") {
     group = "Advent of Code"
 
     val moduleName: String by project
+    val lang: String by project
 
-    if (!project.hasProperty("moduleName") || !moduleName.contains(":")) {
-        throw GradleException("Missing moduleName paramter. specify newModule by using: './gradlew newModule -PnewModule=<year>:<name>'")
+    if (!project.hasProperty("moduleName") || !moduleName.contains(":") || !project.hasProperty("lang")) {
+        throw GradleException("Missing moduleName paramter. specify newModule by using: './gradlew newModule -PnewModule=<year>:<name> -Plang=kotlin'")
     }
-
+    if("kotlin" != lang && "java" != lang) {
+        throw GradleException("lang: $lang is not supported. valid languages are: [java|kotlin]")
+    }
+    
+    
     val moduleTokens = moduleName.split(":")
     val year = moduleTokens[0]
     val projectName = moduleTokens[1]
@@ -19,17 +24,26 @@ tasks.register("newModule") {
     }
 
     val projectDir = createDir("$rootDir/src/$year/$projectName/")
-    val srcMainJava = createDir("${projectDir.path}/src/main/java/ca/terrylockett/aoc$year/$projectName")
-    val srcTestJava = createDir("${projectDir.path}/src/test/java/ca/terrylockett/aoc$year/$projectName")
+    
+    if(lang == "kotlin") {
+        createAndPopulateFile("${projectDir.path}/build.gradle.kts", year, projectName, buildDotGradleContentsKotlin)
+        val srcMainJava = createDir("${projectDir.path}/src/main/kotlin/ca/terrylockett/aoc$year/$projectName")
+        val srcTestJava = createDir("${projectDir.path}/src/test/kotlin/ca/terrylockett/aoc$year/$projectName")
+        createAndPopulateFile("$srcMainJava/${capitalizeFirstChar(projectName)}Runner.kt", year, projectName, mainClassContentsKotlin)
+        createAndPopulateFile("$srcTestJava/Test${capitalizeFirstChar(projectName)}.kt", year, projectName, testClassContentsKotlin)
+    } 
+    if(lang == "java") {
+        createAndPopulateFile("${projectDir.path}/build.gradle.kts", year, projectName, buildDotGradleContentsJava)
+        val srcMainJava = createDir("${projectDir.path}/src/main/java/ca/terrylockett/aoc$year/$projectName")
+        val srcTestJava = createDir("${projectDir.path}/src/test/java/ca/terrylockett/aoc$year/$projectName")
+        createAndPopulateFile("$srcMainJava/${capitalizeFirstChar(projectName)}Runner.java", year, projectName, mainClassContentsJava)
+        createAndPopulateFile("$srcTestJava/Test${capitalizeFirstChar(projectName)}.java", year, projectName, testClassContentsJava)
+    }
+
     val srcMainResource = createDir("${projectDir.path}/src/main/resources/")
     val srcTestResource = createDir("${projectDir.path}/src/test/resources/")
-
-    createAndPopulateFile("${projectDir.path}/build.gradle.kts", year, projectName, buildDotGradleContents)
-    createAndPopulateFile("$srcMainJava/${capitalizeFirstChar(projectName)}Runner.java", year, projectName, mainClassContents)
-    createAndPopulateFile("$srcTestJava/Test${capitalizeFirstChar(projectName)}.java", year, projectName, testClassContents)
     File("$srcMainResource/input.txt").createNewFile()
     File("$srcTestResource/test-input.txt").createNewFile()
-    
 }
 
 fun createDir(dirPath: String): File {
@@ -55,7 +69,7 @@ fun capitalizeFirstChar(str: String): String {
     }
 }
 
-val buildDotGradleContents = """
+val buildDotGradleContentsJava = """
 plugins {
     `aoc-project-conventions`
 }
@@ -65,8 +79,18 @@ application {
 }
 """.replaceFirst("\n", "")
 
+val buildDotGradleContentsKotlin = """
+plugins {
+    `aoc-project-conventions`
+}
 
-val mainClassContents = """
+application {
+    mainClass.set("ca.terrylockett.aoc%s.%s.%sRunnerKt")
+}
+""".replaceFirst("\n", "")
+
+
+val mainClassContentsJava = """
 package ca.terrylockett.aoc%1${'$'}s.%2${'$'}s;
 
 import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder;
@@ -84,8 +108,23 @@ public class %3${'$'}sRunner {
 """.replaceFirst("\n", "")
 
 
+val mainClassContentsKotlin = """
+package ca.terrylockett.aoc%1${'$'}s.%2${'$'}s;
 
-val testClassContents = """
+import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder;
+
+fun main() {
+    val inputFile: String = InputFileFinder.getInputFilePath("input.txt").orElseThrow()
+
+    //println("%2${'$'}s %1${'$'}s part1: TODO")
+    //println("%2${'$'}s %1${'$'}s part2: TODO")
+}
+
+""".replaceFirst("\n", "")
+
+
+
+val testClassContentsJava = """
 package ca.terrylockett.aoc%1${'$'}s.%2${'$'}s;
 
 import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder;
@@ -111,5 +150,38 @@ class Test%3${'$'}s {
     void test%3${'$'}spart1() {
     assertEquals(true, true);
 }
+}
+""".replaceFirst("\n", "")
+
+
+val testClassContentsKotlin = """
+package ca.terrylockett.aoc%1${'$'}s.%2${'$'}s;
+
+import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder;
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestInstance
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+class Test%3${'$'}s {
+
+   companion object {
+        const val TEST_FILE_NAME = "test-input.txt"
+    }
+
+    @Test
+    fun part1() {
+        val inputFilePath = InputFileFinder.getInputFilePath(TEST_FILE_NAME).orElseThrow()
+
+        assertEquals(0, 0)
+    }
+    
+//    @Test
+//    fun part2() {
+//        val inputFilePath = InputFileFinder.getInputFilePath(TEST_FILE_NAME).orElseThrow()
+//        val engine = EngineSchematic(inputFilePath)
+//
+//        assertEquals(467835, engine.part2FindGears())
+//    }
 }
 """.replaceFirst("\n", "")

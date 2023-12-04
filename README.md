@@ -21,4 +21,6 @@ Guaranteed I will finish all days.
 `./gradlew test`
 
 #### Create new Module
-`./gradlew newModule -PmoduleName=2023:day02`
+`./gradlew newModule -PmoduleName=2023:day02 -Plang=kotlin`
+
+valid langs = [kotlin | java]
