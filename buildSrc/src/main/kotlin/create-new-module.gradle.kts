@@ -116,8 +116,8 @@ import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder;
 fun main() {
     val inputFile: String = InputFileFinder.getInputFilePath("input.txt").orElseThrow()
 
-    //println("%2${'$'}s %1${'$'}s part1: TODO")
-    //println("%2${'$'}s %1${'$'}s part2: TODO")
+    //println("%1${'$'}s %2${'$'}s part1: TODO")
+    //println("%1${'$'}s %2${'$'}s part2: TODO")
 }
 
 """.replaceFirst("\n", "")
@@ -165,23 +165,16 @@ import org.junit.jupiter.api.TestInstance
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class Test%3${'$'}s {
 
-   companion object {
-        const val TEST_FILE_NAME = "test-input.txt"
-    }
-
     @Test
     fun part1() {
-        val inputFilePath = InputFileFinder.getInputFilePath(TEST_FILE_NAME).orElseThrow()
-
+        val inputFilePath = InputFileFinder.getInputFilePath("test-input.txt").orElseThrow()
         assertEquals(0, 0)
     }
     
 //    @Test
 //    fun part2() {
-//        val inputFilePath = InputFileFinder.getInputFilePath(TEST_FILE_NAME).orElseThrow()
-//        val engine = EngineSchematic(inputFilePath)
-//
-//        assertEquals(467835, engine.part2FindGears())
+//        val inputFilePath = InputFileFinder.getInputFilePath("test-input.txt").orElseThrow()
+//        assertEquals(0, 0)
 //    }
 }
 """.replaceFirst("\n", "")
