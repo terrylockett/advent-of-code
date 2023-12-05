@@ -7,21 +7,15 @@ import org.junit.jupiter.api.TestInstance
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class TestDay05 {
-    companion object {
-        const val TEST_FILE_NAME = "test-input.txt"
-    }
-
     @Test
     fun part1() {
-        val inputFilePath = InputFileFinder.getInputFilePath(TEST_FILE_NAME).orElseThrow()
-
+        val inputFilePath = InputFileFinder.getInputFilePath("test-input.txt").orElseThrow()
         assertEquals(35L, part1(inputFilePath))
     }
 
     @Test
     fun part2() {
-        val inputFilePath = InputFileFinder.getInputFilePath(TEST_FILE_NAME).orElseThrow()
-
+        val inputFilePath = InputFileFinder.getInputFilePath("test-input.txt").orElseThrow()
         assertEquals(46L, part2(inputFilePath))
     }
 }

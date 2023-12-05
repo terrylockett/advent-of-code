@@ -4,7 +4,6 @@ plugins {
 
 application {
     mainClass.set("ca.terrylockett.aoc2023.day05.Day05RunnerKt")
-    applicationDefaultJvmArgs= listOf("-Xmx20384m")
 }
 
 
