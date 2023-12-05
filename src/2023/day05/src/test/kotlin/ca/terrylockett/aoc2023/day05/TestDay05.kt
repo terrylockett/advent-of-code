@@ -1,14 +1,13 @@
-package ca.terrylockett.aoc2023.day05;
+package ca.terrylockett.aoc2023.day05
 
-import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder;
+import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class TestDay05 {
-
-   companion object {
+    companion object {
         const val TEST_FILE_NAME = "test-input.txt"
     }
 
@@ -18,12 +17,11 @@ class TestDay05 {
 
         assertEquals(35L, part1(inputFilePath))
     }
-    
-//    @Test
-//    fun part2() {
-//        val inputFilePath = InputFileFinder.getInputFilePath(TEST_FILE_NAME).orElseThrow()
-//        val engine = EngineSchematic(inputFilePath)
-//
-//        assertEquals(467835, engine.part2FindGears())
-//    }
+
+    @Test
+    fun part2() {
+        val inputFilePath = InputFileFinder.getInputFilePath(TEST_FILE_NAME).orElseThrow()
+
+        assertEquals(46L, part2(inputFilePath))
+    }
 }
