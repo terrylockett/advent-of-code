@@ -4,6 +4,9 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+# ignore all files named "input.txt"
+**/input.txt
+
 ### IntelliJ IDEA ###
 .idea/*.xml
 .idea/modules.xml
