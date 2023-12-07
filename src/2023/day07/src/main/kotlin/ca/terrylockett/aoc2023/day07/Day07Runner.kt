@@ -13,11 +13,40 @@ val THREE_OF_KIND_REGEX: Pattern = Pattern.compile("(.)\\1\\1")
 val TWO_PAIR_REGEX: Pattern = Pattern.compile("(.)\\1.*(.)\\2")
 val ONE_PAIR_REGEX: Pattern = Pattern.compile("(.)\\1")
 
-class Hand(private val cards: String, val bid: Int) : Comparable<Hand> {
-    private val handType: HandType = getHandType(cards)
+fun main() {
+    val inputFile: String = InputFileFinder.getInputFilePath("input.txt").orElseThrow()
+
+    println("2023 day07 part1: ${playGame(inputFile, false)}")
+    println("2023 day07 part2: ${playGame(inputFile, true)}")
+}
+
+fun playGame(
+    inputFile: String,
+    isWildCard: Boolean,
+): Int {
+    val hands = TreeSet<Hand>()
+
+    File(inputFile).readLines().forEach {
+        val tokens = it.split(" ")
+        val cards = tokens[0]
+        val bid = Integer.parseInt(tokens[1])
+        hands.add(Hand(cards, bid, isWildCard))
+    }
+
+    var total = 0
+    hands.forEachIndexed { idx, element ->
+        total += (idx + 1) * element.bid
+    }
+    return total
+}
+
+class Hand(private val cards: String, val bid: Int, private val isWildCard: Boolean) : Comparable<Hand> {
+    private val handType: HandType =
+        if (isWildCard) getHandTypeWithWildCard(cards) else getHandType(cards)
 
     companion object {
         val cardWeightMap = HashMap<Char, Int>()
+        var cardWeightMapWithWildCard = HashMap<Char, Int>()
 
         init {
             cardWeightMap['A'] = 13
@@ -33,6 +62,9 @@ class Hand(private val cards: String, val bid: Int) : Comparable<Hand> {
             cardWeightMap['4'] = 3
             cardWeightMap['3'] = 2
             cardWeightMap['2'] = 1
+
+            cardWeightMapWithWildCard = cardWeightMap.clone() as HashMap<Char, Int>
+            cardWeightMapWithWildCard['J'] = 0
         }
     }
 
@@ -47,10 +79,11 @@ class Hand(private val cards: String, val bid: Int) : Comparable<Hand> {
         // fall back to the highest card value
         val myCards = cards.toCharArray()
         val otherCards = other.cards.toCharArray()
+        val lookupMap = if (isWildCard) cardWeightMapWithWildCard else cardWeightMap
         for (i in myCards.indices) {
-            return if (cardWeightMap.getValue(myCards[i]) > cardWeightMap.getValue(otherCards[i])) {
+            return if (lookupMap.getValue(myCards[i]) > lookupMap.getValue(otherCards[i])) {
                 1
-            } else if (cardWeightMap.getValue(myCards[i]) < cardWeightMap.getValue(otherCards[i])) {
+            } else if (lookupMap.getValue(myCards[i]) < lookupMap.getValue(otherCards[i])) {
                 -1
             } else {
                 continue
@@ -59,34 +92,6 @@ class Hand(private val cards: String, val bid: Int) : Comparable<Hand> {
 
         return 0
     }
-
-    override fun toString(): String {
-        return "Cards: $cards, Bid: $bid, Type: ${handType.name}"
-    }
-}
-
-fun main() {
-    val inputFile: String = InputFileFinder.getInputFilePath("input.txt").orElseThrow()
-
-    println("2023 day07 part1: ${part1(inputFile)}")
-    // println("2023 day07 part2: TODO")
-}
-
-fun part1(inputFilePath: String): Int {
-    val hands = TreeSet<Hand>()
-
-    File(inputFilePath).readLines().forEach {
-        val tokens = it.split(" ")
-        val cards = tokens[0]
-        val bid = Integer.parseInt(tokens[1])
-        hands.add(Hand(cards, bid))
-    }
-
-    var total = 0
-    hands.forEachIndexed { idx, element ->
-        total += (idx + 1) * element.bid
-    }
-    return total
 }
 
 fun getHandType(cards: String): HandType {
@@ -112,6 +117,25 @@ fun getHandType(cards: String): HandType {
     }
 
     return HandType.HIGH_CARD
+}
+
+fun getHandTypeWithWildCard(cards: String): HandType {
+    val defaultHandsType = getHandType(cards)
+
+    if (!cards.contains("J")) return defaultHandsType
+
+    return when (defaultHandsType) {
+        HandType.FIVE -> HandType.FIVE
+        HandType.FOUR -> HandType.FIVE
+        HandType.FULL -> HandType.FIVE
+        HandType.THREE -> HandType.FOUR
+        HandType.TWO_PAIR -> {
+            val jCount = cards.toCharArray().filter { it == 'J' }.size
+            if (jCount == 1) HandType.FULL else HandType.FOUR
+        }
+        HandType.ONE_PAIR -> HandType.THREE
+        HandType.HIGH_CARD -> HandType.ONE_PAIR
+    }
 }
 
 enum class HandType(val value: Int) {

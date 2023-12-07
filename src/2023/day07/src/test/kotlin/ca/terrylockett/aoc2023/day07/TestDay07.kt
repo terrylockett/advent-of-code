@@ -10,7 +10,13 @@ class TestDay07 {
     @Test
     fun part1() {
         val inputFilePath = InputFileFinder.getInputFilePath("test-input.txt").orElseThrow()
-        assertEquals(6440, part1(inputFilePath))
+        assertEquals(6440, playGame(inputFilePath, false))
+    }
+
+    @Test
+    fun part2() {
+        val inputFilePath = InputFileFinder.getInputFilePath("test-input.txt").orElseThrow()
+        assertEquals(5905, playGame(inputFilePath, true))
     }
 
     @Test
@@ -42,9 +48,26 @@ class TestDay07 {
         assertEquals(HandType.HIGH_CARD, getHandType("12345"))
     }
 
-//    @Test
-//    fun part2() {
-//        val inputFilePath = InputFileFinder.getInputFilePath("test-input.txt").orElseThrow()
-//        assertEquals(0, 0)
-//    }
+    @Test
+    fun testGetHandTypeWithWildCard() {
+        // Five of a kind --> Five
+        assertEquals(HandType.FIVE, getHandTypeWithWildCard("JJJJJ"))
+        // Four of a kind --> Five
+        assertEquals(HandType.FIVE, getHandTypeWithWildCard("JJJJA"))
+        // Full house --> Five
+        assertEquals(HandType.FIVE, getHandTypeWithWildCard("JJJAA"))
+        assertEquals(HandType.FIVE, getHandTypeWithWildCard("JJAAA"))
+        // Three of a kind --> Four
+        assertEquals(HandType.FOUR, getHandTypeWithWildCard("JJJAB"))
+        assertEquals(HandType.FOUR, getHandTypeWithWildCard("AAAJB"))
+        // Two pair with 1J--> Full
+        // Two pair with 2J--> Four
+        assertEquals(HandType.FULL, getHandTypeWithWildCard("AAJBB"))
+        assertEquals(HandType.FOUR, getHandTypeWithWildCard("JJAAB"))
+        // One pair --> Three
+        assertEquals(HandType.THREE, getHandTypeWithWildCard("AABCJ"))
+        assertEquals(HandType.THREE, getHandTypeWithWildCard("JJABC"))
+        // Nothing --> One
+        assertEquals(HandType.ONE_PAIR, getHandTypeWithWildCard("JABCD"))
+    }
 }
