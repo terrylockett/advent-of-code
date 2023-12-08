@@ -1,6 +1,6 @@
 package ca.terrylockett.aoc2022.day06;
 
-import ca.terrylockett.aoccommon.inputfilefinder.Resources;
+import ca.terrylockett.aoccommon.resources.Resources;
 
 import java.nio.file.Files;
 import java.nio.file.Path;

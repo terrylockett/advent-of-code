@@ -1,6 +1,6 @@
 package ca.terrylockett.aoc2022.day04;
 
-import ca.terrylockett.aoccommon.inputfilefinder.Resources;
+import ca.terrylockett.aoccommon.resources.Resources;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

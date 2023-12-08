@@ -1,6 +1,6 @@
 package ca.terrylockett.aoc2023.day02
 
-import ca.terrylockett.aoccommon.inputfilefinder.Resources
+import ca.terrylockett.aoccommon.resources.Resources
 
 fun main() {
 	val inputFile: String = Resources.getInputFilePath("input.txt").orElseThrow()

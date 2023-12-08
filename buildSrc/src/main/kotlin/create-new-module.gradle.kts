@@ -93,14 +93,14 @@ application {
 val mainClassContentsJava = """
 package ca.terrylockett.aoc%1${'$'}s.%2${'$'}s;
 
-import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder;
+import ca.terrylockett.aoccommon.inputfilefinder.Resources;
 
 public class %3${'$'}sRunner {
 
     static final String INPUT_FILE_NAME = "input.txt";
 
     public static void main(String[] args) throws Exception {
-        String inputFilePath = InputFileFinder.getFilePath(%3${'$'}sRunner.class.getClassLoader(), INPUT_FILE_NAME);
+        String inputFilePath = Resources.getFilePath(%3${'$'}sRunner.class.getClassLoader(), INPUT_FILE_NAME);
 
         System.out.println("Hello");
     }
@@ -111,10 +111,10 @@ public class %3${'$'}sRunner {
 val mainClassContentsKotlin = """
 package ca.terrylockett.aoc%1${'$'}s.%2${'$'}s;
 
-import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder;
+import ca.terrylockett.aoccommon.inputfilefinder.Resources;
 
 fun main() {
-    val inputFile: String = InputFileFinder.getInputFilePath("input.txt").orElseThrow()
+    val inputFile: String = Resources.getInputFilePath("input.txt").orElseThrow()
 
     //println("%1${'$'}s %2${'$'}s part1: TODO")
     //println("%1${'$'}s %2${'$'}s part2: TODO")
@@ -127,7 +127,7 @@ fun main() {
 val testClassContentsJava = """
 package ca.terrylockett.aoc%1${'$'}s.%2${'$'}s;
 
-import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder;
+import ca.terrylockett.aoccommon.inputfilefinder.Resources;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -143,7 +143,7 @@ class Test%3${'$'}s {
 
     @BeforeAll
     static void setup() throws URISyntaxException {
-        testFilePath = InputFileFinder.getFilePath(Test%3${'$'}s.class.getClassLoader(), TEST_FILE_NAME);
+        testFilePath = Resources.getFilePath(Test%3${'$'}s.class.getClassLoader(), TEST_FILE_NAME);
     }
 
     @Test
@@ -157,7 +157,7 @@ class Test%3${'$'}s {
 val testClassContentsKotlin = """
 package ca.terrylockett.aoc%1${'$'}s.%2${'$'}s;
 
-import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder;
+import ca.terrylockett.aoccommon.inputfilefinder.Resources;
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
@@ -167,13 +167,13 @@ class Test%3${'$'}s {
 
     @Test
     fun part1() {
-        val inputFilePath = InputFileFinder.getInputFilePath("test-input.txt").orElseThrow()
+        val inputFilePath = Resources.getInputFilePath("test-input.txt").orElseThrow()
         assertEquals(0, 0)
     }
     
 //    @Test
 //    fun part2() {
-//        val inputFilePath = InputFileFinder.getInputFilePath("test-input.txt").orElseThrow()
+//        val inputFilePath = Resources.getInputFilePath("test-input.txt").orElseThrow()
 //        assertEquals(0, 0)
 //    }
 }

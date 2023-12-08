@@ -1,4 +1,4 @@
-package ca.terrylockett.aoccommon.inputfilefinder;
+package ca.terrylockett.aoccommon.resources;
 
 import java.io.File;
 import java.net.URISyntaxException;

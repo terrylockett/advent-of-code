@@ -1,6 +1,6 @@
 package ca.terrylockett.aoc2022.day08;
 
-import ca.terrylockett.aoccommon.inputfilefinder.Resources;
+import ca.terrylockett.aoccommon.resources.Resources;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

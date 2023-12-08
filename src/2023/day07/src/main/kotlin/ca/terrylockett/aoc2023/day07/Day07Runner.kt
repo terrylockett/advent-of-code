@@ -1,6 +1,6 @@
 package ca.terrylockett.aoc2023.day07
 
-import ca.terrylockett.aoccommon.inputfilefinder.Resources
+import ca.terrylockett.aoccommon.resources.Resources
 import java.io.File
 import java.util.TreeSet
 import java.util.regex.Pattern

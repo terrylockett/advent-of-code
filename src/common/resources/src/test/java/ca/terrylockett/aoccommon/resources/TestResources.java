@@ -1,4 +1,4 @@
-package ca.terrylockett.aoccommon.inputfilefinder;
+package ca.terrylockett.aoccommon.resources;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,6 @@
 package ca.terrylockett.aoc2023.day03
 
-import ca.terrylockett.aoccommon.inputfilefinder.Resources
+import ca.terrylockett.aoccommon.resources.Resources
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance

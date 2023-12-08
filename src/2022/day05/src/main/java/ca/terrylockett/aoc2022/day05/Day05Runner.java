@@ -1,6 +1,6 @@
 package ca.terrylockett.aoc2022.day05;
 
-import ca.terrylockett.aoccommon.inputfilefinder.Resources;
+import ca.terrylockett.aoccommon.resources.Resources;
 
 public class Day05Runner {
 

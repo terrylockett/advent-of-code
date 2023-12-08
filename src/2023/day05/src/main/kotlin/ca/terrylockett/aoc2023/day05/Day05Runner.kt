@@ -1,6 +1,6 @@
 package ca.terrylockett.aoc2023.day05
 
-import ca.terrylockett.aoccommon.inputfilefinder.Resources
+import ca.terrylockett.aoccommon.resources.Resources
 import java.io.File
 import java.io.FileInputStream
 import java.util.Scanner
