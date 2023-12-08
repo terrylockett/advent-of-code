@@ -1,6 +1,6 @@
 package ca.terrylockett.aoc2023.day07
 
-import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder
+import ca.terrylockett.aoccommon.inputfilefinder.Resources
 import java.io.File
 import java.util.TreeSet
 import java.util.regex.Pattern
@@ -14,7 +14,7 @@ val TWO_PAIR_REGEX: Pattern = Pattern.compile("(.)\\1.*(.)\\2")
 val ONE_PAIR_REGEX: Pattern = Pattern.compile("(.)\\1")
 
 fun main() {
-	val inputFile: String = InputFileFinder.getInputFilePath("input.txt").orElseThrow()
+	val inputFile: String = Resources.getInputFilePath("input.txt").orElseThrow()
 
 	println("2023 day07 part1: ${playGame(inputFile, false)}")
 	println("2023 day07 part2: ${playGame(inputFile, true)}")

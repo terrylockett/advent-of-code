@@ -1,6 +1,6 @@
 package ca.terrylockett.aoc2022.day01;
 
-import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder;
+import ca.terrylockett.aoccommon.inputfilefinder.Resources;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ public class TestDay01 {
 
 	@BeforeAll
 	public static void setup() throws URISyntaxException {
-		testFilePath = InputFileFinder.getFilePath(TestDay01.class.getClassLoader(), TEST_FILE_NAME);
+		testFilePath = Resources.getInputFilePath(TEST_FILE_NAME).orElseThrow();
 	}
 
 	@Test

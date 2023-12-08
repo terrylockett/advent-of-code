@@ -1,6 +1,6 @@
 package ca.terrylockett.aoc2022.day06;
 
-import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder;
+import ca.terrylockett.aoccommon.inputfilefinder.Resources;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -8,7 +8,7 @@ import java.nio.file.Path;
 public class Day06Runner {
 
 	public static void main(String[] args) throws Exception {
-		String file = InputFileFinder.getFilePath(Day06Runner.class.getClassLoader(), "input.txt");
+		String file = Resources.getInputFilePath("input.txt").orElseThrow();
 
 		String input = Files.readString(Path.of(file));
 

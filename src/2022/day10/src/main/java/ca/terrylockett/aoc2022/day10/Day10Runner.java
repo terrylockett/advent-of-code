@@ -1,11 +1,11 @@
 package ca.terrylockett.aoc2022.day10;
 
-import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder;
+import ca.terrylockett.aoccommon.inputfilefinder.Resources;
 
 public class Day10Runner {
 
 	public static void main(String[] args) throws Exception {
-		String inputFile = InputFileFinder.getFilePath(Day10Runner.class.getClassLoader(), "input.txt");
+		String inputFile = Resources.getInputFilePath("input.txt").orElseThrow();
 
 		// part 1
 		ClockCircuit clock = new ClockCircuit();

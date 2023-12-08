@@ -1,6 +1,6 @@
 package ca.terrylockett.aoc2022.day01;
 
-import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder;
+import ca.terrylockett.aoccommon.inputfilefinder.Resources;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
@@ -9,7 +9,7 @@ public class Day01Runner {
 
 	public static void main(String[] args) throws URISyntaxException, FileNotFoundException {
 
-		String filePath = InputFileFinder.getFilePath(Day01Runner.class.getClassLoader(), "input.txt");
+		String filePath = Resources.getInputFilePath("input.txt").orElseThrow();
 
 		// ***** part 01 *****//
 		int maxCals = DumbElfCalorieTracker.findTheFoodHog(filePath);

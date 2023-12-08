@@ -1,11 +1,11 @@
 package ca.terrylockett.aoc2023.day03
 
-import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder
+import ca.terrylockett.aoccommon.inputfilefinder.Resources
 
 fun main() {
-    val inputFile: String = InputFileFinder.getInputFilePath("input.txt").orElseThrow()
-    val engine = EngineSchematic(inputFile)
+	val inputFile: String = Resources.getInputFilePath("input.txt").orElseThrow()
+	val engine = EngineSchematic(inputFile)
 
-    println("2023 day03 part1: ${engine.part1FindParts()}")
-    println("2023 day03 part2: ${engine.part2FindGears()}")
+	println("2023 day03 part1: ${engine.part1FindParts()}")
+	println("2023 day03 part2: ${engine.part2FindGears()}")
 }

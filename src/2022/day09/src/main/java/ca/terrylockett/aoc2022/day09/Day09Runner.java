@@ -1,13 +1,11 @@
 package ca.terrylockett.aoc2022.day09;
 
-import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder;
-
-import java.net.URISyntaxException;
+import ca.terrylockett.aoccommon.inputfilefinder.Resources;
 
 public class Day09Runner {
 
 	public static void main(String[] args) throws Exception {
-		String inputFile = InputFileFinder.getFilePath(Day09Runner.class.getClassLoader(), "input.txt");
+		String inputFile = Resources.getInputFilePath("input.txt").orElseThrow();
 
 		Rope ropePart1 = new Rope(2);
 		ropePart1.processMoves(inputFile);

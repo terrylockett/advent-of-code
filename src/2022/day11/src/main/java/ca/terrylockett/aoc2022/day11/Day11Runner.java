@@ -1,11 +1,11 @@
 package ca.terrylockett.aoc2022.day11;
 
-import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder;
+import ca.terrylockett.aoccommon.inputfilefinder.Resources;
 
 public class Day11Runner {
 
 	public static void main(String[] args) throws Exception {
-		String inputFile = InputFileFinder.getFilePath(Day11Runner.class.getClassLoader(), "input.txt");
+		String inputFile = Resources.getInputFilePath("input.txt").orElseThrow();
 
 		MonkeyProcessor mp = new MonkeyProcessor();
 		mp.processInput(inputFile);

@@ -1,11 +1,11 @@
 package ca.terrylockett.aoc2022.day04;
 
-import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder;
+import ca.terrylockett.aoccommon.inputfilefinder.Resources;
 
 public class Day04Runner {
 
 	public static void main(String[] args) throws Exception {
-		String inputFile = InputFileFinder.getFilePath(Day04Runner.class.getClassLoader(), "input.txt");
+		String inputFile = Resources.getInputFilePath("input.txt").orElseThrow();
 
 		// ***** part 01 *****
 		int count = CampAssignmentCleaner.findAssignmentsErrorsCount(inputFile);

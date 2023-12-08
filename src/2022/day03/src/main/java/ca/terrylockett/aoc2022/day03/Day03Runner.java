@@ -1,6 +1,6 @@
 package ca.terrylockett.aoc2022.day03;
 
-import ca.terrylockett.aoccommon.inputfilefinder.InputFileFinder;
+import ca.terrylockett.aoccommon.inputfilefinder.Resources;
 
 public class Day03Runner {
 
@@ -8,7 +8,7 @@ public class Day03Runner {
 
 	public static void main(String[] args) throws Exception {
 
-		String inputFilePath = InputFileFinder.getFilePath(Day03Runner.class.getClassLoader(), INPUT_FILE_NAME);
+		String inputFilePath = Resources.getInputFilePath(INPUT_FILE_NAME).orElseThrow();
 
 		// ******** Part 01 ********
 		System.out.println("Day3 Part1: " + RuckSackValidator.findDuplicateItemsTotal(inputFilePath));

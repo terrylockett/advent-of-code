@@ -9,7 +9,7 @@ plugins {
 val libs = the<LibrariesForLibs>()
 
 dependencies {
-    implementation(project(":common:input-file-finder"))
+    implementation(project(":common:resources"))
     testImplementation(libs.junitJupiterCore)
 }
 
