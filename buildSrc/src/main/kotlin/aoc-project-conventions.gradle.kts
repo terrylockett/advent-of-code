@@ -22,10 +22,21 @@ tasks.named<Test>("test") {
 }
 
 spotless {
+    ratchetFrom("origin/main")
     java {
         eclipse()
     }
     kotlin {
+        ktlint()
+                .editorConfigOverride(mapOf(
+                        "indent_size" to "4", 
+                        "parameter-wrapping" to false))
+                .userData(mapOf(
+                        "argument-list-wrapping" to "false"))
+        indentWithTabs()
+    }
+    kotlinGradle {
+        target("*.gradle.kts")
         ktlint()
     }
 }
