@@ -14,9 +14,9 @@ class TestDay09 {
 		assertEquals(114, part1(inputFilePath))
 	}
 
-//    @Test
-//    fun part2() {
-//        val inputFilePath = Resources.getInputFilePath("test-input.txt").orElseThrow()
-//        assertEquals(0, 0)
-//    }
+	@Test
+	fun part2() {
+		val inputFilePath = Resources.getInputFilePath("test-input.txt").orElseThrow()
+		assertEquals(2, part2(inputFilePath))
+	}
 }
