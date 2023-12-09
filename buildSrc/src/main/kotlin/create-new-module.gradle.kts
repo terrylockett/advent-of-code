@@ -93,7 +93,7 @@ application {
 val mainClassContentsJava = """
 package ca.terrylockett.aoc%1${'$'}s.%2${'$'}s;
 
-import ca.terrylockett.aoccommon.inputfilefinder.Resources;
+import ca.terrylockett.aoccommon.resources.Resources;
 
 public class %3${'$'}sRunner {
 
@@ -111,7 +111,7 @@ public class %3${'$'}sRunner {
 val mainClassContentsKotlin = """
 package ca.terrylockett.aoc%1${'$'}s.%2${'$'}s;
 
-import ca.terrylockett.aoccommon.inputfilefinder.Resources;
+import ca.terrylockett.aoccommon.resources.Resources;
 
 fun main() {
     val inputFile: String = Resources.getInputFilePath("input.txt").orElseThrow()
@@ -127,7 +127,7 @@ fun main() {
 val testClassContentsJava = """
 package ca.terrylockett.aoc%1${'$'}s.%2${'$'}s;
 
-import ca.terrylockett.aoccommon.inputfilefinder.Resources;
+import ca.terrylockett.aoccommon.resources.Resources;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -157,7 +157,7 @@ class Test%3${'$'}s {
 val testClassContentsKotlin = """
 package ca.terrylockett.aoc%1${'$'}s.%2${'$'}s;
 
-import ca.terrylockett.aoccommon.inputfilefinder.Resources;
+import ca.terrylockett.aoccommon.resources.Resources;
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
