@@ -4,6 +4,7 @@ includeSubprojects("2015")
 includeSubprojects("2022")
 includeSubprojects("2023")
 includeSubprojects("2024")
+includeSubprojects("2025")
 includeSubprojects("common")
 
 fun includeSubprojects(dirName: String) {
