@@ -28,4 +28,38 @@ class TestDay01 {
 		assertEquals(3, actual);
 	}
 
+	@Test
+	void testDay01part2() throws FileNotFoundException {
+		var dial = new Dial();
+		int actual = dial.part2(testFilePath);
+
+		assertEquals(6, actual);
+	}
+
+	@Test
+	void testTesty() {
+		var dial = new Dial();
+		dial.setPosition(0);
+
+		Dial.part2RotateDial(dial, 1000);
+		Dial.part2RotateDial(dial, -1000);
+		assertEquals(20, dial.getZeroCount());
+		assertEquals(0, dial.getPosition());
+
+		dial = new Dial();
+		Dial.part2RotateDial(dial, -50);
+		assertEquals(1, dial.getZeroCount());
+		assertEquals(0, dial.getPosition());
+
+		Dial.part2RotateDial(dial, -1);
+		assertEquals(1, dial.getZeroCount());
+		assertEquals(99, dial.getPosition());
+
+		dial = new Dial();
+		Dial.part2RotateDial(dial, -50);
+		Dial.part2RotateDial(dial, 100);
+		assertEquals(2, dial.getZeroCount());
+		assertEquals(0, dial.getPosition());
+	}
+
 }
