@@ -13,6 +13,13 @@ public class Resources {
 		//top secret hidden constructor.
 	}
 
+	/**
+	 * return file contents for 'fileName' as a string. 
+	 * The file must be in the resources dir of the submodule.
+	 *
+	 * @param fileName The name of the file.
+	 * @return The absolute path to the file.
+	 */
 	public static Optional<String> getInput(String fileName) {
 		var inputStream = ClassLoader.getSystemResourceAsStream(fileName);
 		if (null == inputStream) {
@@ -33,11 +40,10 @@ public class Resources {
 	}
 	
 	/**
-	 * This is an odd way to get files, but I think its cute, so it says. <3
-	 * <br/><br/>
-	 * Running a main method in intellij vs running it from the run task will have different working dirs which breaks relative paths to the input file.
-	 * As a way around this put the input file into the resources dir and then class load the file to find the path.
 	 *
+	 * Gets the absolute file path for a 'fileName'.
+	 * The file must be in the resources dir of the submodule.
+	 * 
 	 * @param fileName The name of the file.
 	 * @return The absolute path to the file.
 	 */
