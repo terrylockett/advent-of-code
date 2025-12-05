@@ -21,4 +21,9 @@ class TestDay03 {
 	void testDay03part1() {
 		assertEquals(357, Day03Runner.part1(testInput));
 	}
+
+	@Test
+	void testDay03part2() {
+		assertEquals(3121910778619L, Day03Runner.part2(testInput));
+	}
 }
