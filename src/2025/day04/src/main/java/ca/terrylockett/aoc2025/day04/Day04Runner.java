@@ -1,0 +1,64 @@
+package ca.terrylockett.aoc2025.day04;
+
+import ca.terrylockett.aoccommon.resources.Resources;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Day04Runner {
+
+	static final String INPUT_FILE_NAME = "input.txt";
+
+	public static void main(String[] args) throws Exception {
+		String input = Resources.getInput(INPUT_FILE_NAME).orElseThrow();
+
+		System.out.println("2025 day04 part1: " + part1(input));
+		// System.out.println("2025 day04 part2: " + part2(input));
+	}
+
+	static long part1(String puzzleInput) {
+		Grid grid = createGrid(puzzleInput);
+		int validRolls = 0;
+
+		for (int row = 0; row < grid.getRowCount(); row++) {
+			for (int col = 0; col < grid.getColCount(); col++) {
+				if (grid.getCell(row, col) != '@') {
+					continue;
+				}
+
+				int currentCellNeighborCount = 0;
+				for (var direction : Grid.Direction.values()) {
+					char c = grid.getNeighbor(row, col, direction).orElse('.');
+					if ('@' == c) {
+						currentCellNeighborCount++;
+					}
+				}
+
+				if (currentCellNeighborCount < 4) {
+					validRolls++;
+				}
+			}
+		}
+
+		return validRolls;
+	}
+
+	static Grid createGrid(String puzzleInput) {
+
+		List<String> lines = puzzleInput.lines().collect(Collectors.toList());
+		Grid grid = new Grid(lines.size(), lines.get(0).length());
+
+		for (int row = 0; row < lines.size(); row++) {
+			String line = lines.get(row);
+			char[] chars = line.toCharArray();
+			for (int col = 0; col < line.length(); col++) {
+				char c = chars[col];
+				if (c == '@') {
+					grid.setCell(row, col, '@');
+				}
+			}
+		}
+		return grid;
+	}
+
+}
