@@ -35,15 +35,15 @@ public class Day04Runner {
 					continue;
 				}
 
-				int currentCellNeighborCount = 0;
+				int currentCellNeighbourCount = 0;
 				for (var direction : Grid.Direction.values()) {
-					char c = grid.getNeighbor(cell.row, cell.col, direction).orElse('.');
+					char c = grid.getNeighbour(cell.row, cell.col, direction).orElse('.');
 					if ('@' == c) {
-						currentCellNeighborCount++;
+						currentCellNeighbourCount++;
 					}
 				}
 
-				if (currentCellNeighborCount < 4) {
+				if (currentCellNeighbourCount < 4) {
 					validRolls++;
 					cellsToRemove.add(cell);
 				}
@@ -63,15 +63,15 @@ public class Day04Runner {
 				continue;
 			}
 
-			int currentCellNeighborCount = 0;
+			int currentCellNeighbourCount = 0;
 			for (var direction : Grid.Direction.values()) {
-				char c = grid.getNeighbor(cell.row, cell.col, direction).orElse('.');
+				char c = grid.getNeighbour(cell.row, cell.col, direction).orElse('.');
 				if ('@' == c) {
-					currentCellNeighborCount++;
+					currentCellNeighbourCount++;
 				}
 			}
 
-			if (currentCellNeighborCount < 4) {
+			if (currentCellNeighbourCount < 4) {
 				validRolls++;
 			}
 		}

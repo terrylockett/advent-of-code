@@ -52,7 +52,7 @@ public class Grid {
 		return cells.iterator();
 	}
 
-	public Optional<Character> getNeighbor(int row, int col, Direction direction) {
+	public Optional<Character> getNeighbour(int row, int col, Direction direction) {
 		try {
 			Character value = null;
 			switch (direction) {
