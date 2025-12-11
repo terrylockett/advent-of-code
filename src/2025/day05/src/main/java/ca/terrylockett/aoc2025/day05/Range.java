@@ -13,4 +13,9 @@ public class Range {
 	public boolean contains(long value) {
 		return value >= start && value <= end;
 	}
+
+	@Override
+	public String toString() {
+		return String.format("[%d, %d]", this.start, this.end);
+	}
 }
