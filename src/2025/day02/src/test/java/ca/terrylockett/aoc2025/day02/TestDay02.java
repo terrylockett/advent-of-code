@@ -1,6 +1,7 @@
 package ca.terrylockett.aoc2025.day02;
 
 import ca.terrylockett.aoccommon.resources.Resources;
+import ca.terrylockett.aoccommon.structures.Range;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +19,7 @@ class TestDay02 {
 	@BeforeAll
 	static void setup() {
 		testInput = Resources.getInput(TEST_FILE_NAME).orElseThrow();
-		ranges = Range.createRanges(testInput);
+		ranges = Day02Runner.createRanges(testInput);
 	}
 
 	@Test

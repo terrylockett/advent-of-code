@@ -1,6 +1,7 @@
 package ca.terrylockett.aoc2025.day02;
 
 import ca.terrylockett.aoccommon.resources.Resources;
+import ca.terrylockett.aoccommon.structures.Range;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -10,6 +11,8 @@ public class Day02Runner {
 
 	static final String INPUT_FILE_NAME = "input.txt";
 	static final int DIVISOR_CACHE_SIZE = 10;
+
+	static final Pattern EXPERT_CSV_PARSER_PATTERN = Pattern.compile(",");
 
 	static final Map<Integer, Pattern> DIVISOR_PATTERNS = new HashMap<>();
 	static final Map<Integer, Set<Integer>> WHOLE_DIVISORS = new HashMap<>();
@@ -22,7 +25,7 @@ public class Day02Runner {
 
 	public static void main(String[] args) {
 		String input = Resources.getInput(INPUT_FILE_NAME).orElseThrow();
-		List<Range> ranges = Range.createRanges(input);
+		List<Range> ranges = createRanges(input);
 
 		System.out.println("2025 day02 part1: " + part1(ranges));
 		System.out.println("2025 day02 part2: " + part2(ranges));
@@ -85,6 +88,17 @@ public class Day02Runner {
 			}
 		}
 		return false;
+	}
+
+	public static List<Range> createRanges(String puzzleInput) {
+		List<Range> ranges = new ArrayList<>();
+		for (String csvToken : EXPERT_CSV_PARSER_PATTERN.split(puzzleInput)) {
+			var rangeTokens = csvToken.split("-");
+			long start = Long.parseLong(rangeTokens[0]);
+			long end = Long.parseLong(rangeTokens[1]);
+			ranges.add(new Range(start, end));
+		}
+		return ranges;
 	}
 
 	private static Set<Integer> getWholeDivisors(int stringLength) {

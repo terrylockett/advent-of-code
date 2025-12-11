@@ -1,6 +1,7 @@
 package ca.terrylockett.aoc2025.day05;
 
 import ca.terrylockett.aoccommon.resources.Resources;
+import ca.terrylockett.aoccommon.structures.Range;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -49,11 +50,11 @@ class TestDay05 {
 	@Test
 	void testGetRanges() {
 		var ranges = Day05Runner.getRanges(testInput);
-		assertEquals(3L, ranges.get(0).start);
-		assertEquals(5L, ranges.get(0).end);
+		assertEquals(3L, ranges.get(0).getStart());
+		assertEquals(5L, ranges.get(0).getEnd());
 
-		assertEquals(12L, ranges.get(3).start);
-		assertEquals(18L, ranges.get(3).end);
+		assertEquals(12L, ranges.get(3).getStart());
+		assertEquals(18L, ranges.get(3).getEnd());
 	}
 
 	@Test
@@ -75,8 +76,8 @@ class TestDay05 {
 		var actual = Day05Runner.slamRanges(foo, bar);
 
 		assertNotNull(actual);
-		assertEquals(1, actual.start);
-		assertEquals(5, actual.end);
+		assertEquals(1, actual.getStart());
+		assertEquals(5, actual.getEnd());
 	}
 
 	@Test
@@ -86,8 +87,8 @@ class TestDay05 {
 		var actual = Day05Runner.slamRanges(foo, bar);
 
 		assertNotNull(actual);
-		assertEquals(1, actual.start);
-		assertEquals(5, actual.end);
+		assertEquals(1, actual.getStart());
+		assertEquals(5, actual.getEnd());
 	}
 
 	@Test
@@ -97,8 +98,8 @@ class TestDay05 {
 		var actual = Day05Runner.slamRanges(foo, bar);
 
 		assertNotNull(actual);
-		assertEquals(1, actual.start);
-		assertEquals(5, actual.end);
+		assertEquals(1, actual.getStart());
+		assertEquals(5, actual.getEnd());
 	}
 
 	@Test
@@ -108,8 +109,8 @@ class TestDay05 {
 		var actual = Day05Runner.slamRanges(foo, bar);
 
 		assertNotNull(actual);
-		assertEquals(1, actual.start);
-		assertEquals(5, actual.end);
+		assertEquals(1, actual.getStart());
+		assertEquals(5, actual.getEnd());
 	}
 
 	@Test
@@ -119,8 +120,8 @@ class TestDay05 {
 		var actual = Day05Runner.slamRanges(foo, bar);
 
 		assertNotNull(actual);
-		assertEquals(1, actual.start);
-		assertEquals(5, actual.end);
+		assertEquals(1, actual.getStart());
+		assertEquals(5, actual.getEnd());
 	}
 
 	@Test
@@ -130,8 +131,8 @@ class TestDay05 {
 		var actual = Day05Runner.slamRanges(foo, bar);
 
 		assertNotNull(actual);
-		assertEquals(1, actual.start);
-		assertEquals(5, actual.end);
+		assertEquals(1, actual.getStart());
+		assertEquals(5, actual.getEnd());
 	}
 
 	@Test

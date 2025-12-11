@@ -8,7 +8,7 @@ Guaranteed I will finish all days.
 
 
 ## Configuration
-`JDK 17+`
+`JDK 11+`
 
 Set AOC session token in your `~/.gradle/gradle.properties` to download the puzzle input.
 ```

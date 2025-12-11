@@ -1,6 +1,7 @@
 package ca.terrylockett.aoc2025.day05;
 
 import ca.terrylockett.aoccommon.resources.Resources;
+import ca.terrylockett.aoccommon.structures.Range;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -25,7 +26,7 @@ public class Day05Runner {
 
 		outer : for (Long id : ids) {
 			for (Range range : ranges) {
-				if (range.contains(id)) {
+				if (range.containsInclusive(id)) {
 					total++;
 					continue outer;
 				}
@@ -80,7 +81,7 @@ public class Day05Runner {
 		long total = 0L;
 
 		for (Range range : ranges) {
-			total += (range.end - range.start) + 1;
+			total += (range.getEnd() - range.getStart()) + 1;
 		}
 
 		return total;
@@ -154,22 +155,22 @@ public class Day05Runner {
 	 */
 	static Range slamRanges(Range first, Range second) {
 
-		if (first.start > second.start && first.end < second.end) {
+		if (first.getStart() > second.getStart() && first.getEnd() < second.getEnd()) {
 			return second;
 		}
-		if (second.start > first.start && second.end < first.end) {
+		if (second.getStart() > first.getStart() && second.getEnd() < first.getEnd()) {
 			return first;
 		}
 
-		if (first.start <= second.end && first.start >= second.start) {
-			if (first.end >= second.end) {
-				return new Range(second.start, first.end);
+		if (first.getStart() <= second.getEnd() && first.getStart() >= second.getStart()) {
+			if (first.getEnd() >= second.getEnd()) {
+				return new Range(second.getStart(), first.getEnd());
 			}
 			return second;
 		}
-		if (first.end >= second.start && first.end <= second.end) {
-			if (first.start <= second.start) {
-				return new Range(first.start, second.end);
+		if (first.getEnd() >= second.getStart() && first.getEnd() <= second.getEnd()) {
+			if (first.getStart() <= second.getStart()) {
+				return new Range(first.getStart(), second.getEnd());
 			}
 			return first;
 		}
