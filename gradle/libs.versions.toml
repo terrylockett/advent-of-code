@@ -2,6 +2,7 @@
 commonsCodec = {module = 'commons-codec:commons-codec', version = '1.17.1'}
 commonsIo = { module = 'commons-io:commons-io', version = '2.6' }
 commonsLang = { module = 'org.apache.commons:commons-lang3', version ='3.20.0' }
+commonsMath3 = { module = 'org.apache.commons:commons-math3', version = '3.6.1' }
 guava = { module = "com.google.guava:guava", version = "31.1-jre" }
 gson = { module = 'com.google.code.gson:gson', version = '2.11.0' }
 junitJupiterCore = { module = "org.junit.jupiter:junit-jupiter", version = "5.9.3" }
