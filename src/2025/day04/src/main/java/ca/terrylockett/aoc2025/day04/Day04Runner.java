@@ -1,6 +1,7 @@
 package ca.terrylockett.aoc2025.day04;
 
 import ca.terrylockett.aoccommon.resources.Resources;
+import ca.terrylockett.aoccommon.structures.Grid;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class Day04Runner {
 			}
 			cellsToRemove.clear();
 
-			for (var itr = grid.getIterator(); itr.hasNext();) {
+			for (var itr = grid.cellIterator(); itr.hasNext();) {
 				Grid.Cell cell = itr.next();
 				if (cell.value != '@') {
 					continue;
@@ -37,7 +38,7 @@ public class Day04Runner {
 
 				int currentCellNeighbourCount = 0;
 				for (var direction : Grid.Direction.values()) {
-					char c = grid.getNeighbour(cell.row, cell.col, direction).orElse('.');
+					char c = grid.peekNeighbour(cell.row, cell.col, direction).orElse('.');
 					if ('@' == c) {
 						currentCellNeighbourCount++;
 					}
@@ -57,7 +58,7 @@ public class Day04Runner {
 		Grid grid = createGrid(puzzleInput);
 		int validRolls = 0;
 
-		for (var itr = grid.getIterator(); itr.hasNext();) {
+		for (var itr = grid.cellIterator(); itr.hasNext();) {
 			Grid.Cell cell = itr.next();
 			if (cell.value != '@') {
 				continue;
@@ -65,7 +66,7 @@ public class Day04Runner {
 
 			int currentCellNeighbourCount = 0;
 			for (var direction : Grid.Direction.values()) {
-				char c = grid.getNeighbour(cell.row, cell.col, direction).orElse('.');
+				char c = grid.peekNeighbour(cell.row, cell.col, direction).orElse('.');
 				if ('@' == c) {
 					currentCellNeighbourCount++;
 				}
