@@ -21,4 +21,9 @@ class TestDay06 {
 	void testDay06part1() {
 		assertEquals(4277556L, Day06Runner.part1(testInput));
 	}
+
+	@Test
+	void testDay06part2() {
+		assertEquals(3263827L, Day06Runner.part2(testInput));
+	}
 }
