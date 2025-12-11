@@ -94,14 +94,14 @@ application {
 val mainClassContentsJava = """
 package ca.terrylockett.aoc%1${'$'}s.%2${'$'}s;
 
-import ca.terrylockett.aoccommon.resources.Resources;
+import ca.terrylockett.aoccommon.input.PuzzleInput;
 
 public class %3${'$'}sRunner {
 
 	static final String INPUT_FILE_NAME = "input.txt";
 
 	public static void main(String[] args) throws Exception {
-		String input = Resources.getInput(INPUT_FILE_NAME).orElseThrow();
+		String input = PuzzleInput.getInput(INPUT_FILE_NAME).orElseThrow();
 
 		//System.out.println("%1${'$'}s %2${'$'}s part1: " + part1(input));
 		//System.out.println("%1${'$'}s %2${'$'}s part2: " + part2(input));
@@ -113,9 +113,9 @@ public class %3${'$'}sRunner {
 val mainClassContentsKotlin = """
 package ca.terrylockett.aoc%1${'$'}s.%2${'$'}s;
 
-import ca.terrylockett.aoccommon.resources.Resources;
+import ca.terrylockett.aoccommon.input.PuzzleInput;
 
-val input: String = Resources.getInput("input.txt").orElseThrow()
+val input: String = PuzzleInput.getInput("input.txt").orElseThrow()
 
 fun main() {
 	//println("%1${'$'}s %2${'$'}s part1: ${'$'}{part1(input)}")
@@ -137,7 +137,7 @@ fun part2(input: String): Int {
 val testClassContentsJava = """
 package ca.terrylockett.aoc%1${'$'}s.%2${'$'}s;
 
-import ca.terrylockett.aoccommon.resources.Resources;
+import ca.terrylockett.aoccommon.input.PuzzleInput;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -147,11 +147,11 @@ class Test%3${'$'}s {
 
 	static final String TEST_FILE_NAME = "test-input.txt";
 
-	static String testFilePath = "";
+	static String testInput = "";
 
 	@BeforeAll
 	static void setup() {
-		testFilePath = Resources.getInput(TEST_FILE_NAME).orElseThrow();
+		testInput = PuzzleInput.getInput(TEST_FILE_NAME).orElseThrow();
 	}
 
 	@Test
@@ -165,7 +165,7 @@ class Test%3${'$'}s {
 val testClassContentsKotlin = """
 package ca.terrylockett.aoc%1${'$'}s.%2${'$'}s;
 
-import ca.terrylockett.aoccommon.resources.Resources;
+import ca.terrylockett.aoccommon.input.PuzzleInput;
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
@@ -175,13 +175,13 @@ class Test%3${'$'}s {
 
 	@Test
 	fun part1() {
-		val input = Resources.getInput("test-input.txt").orElseThrow()
+		val input = PuzzleInput.getInput("test-input.txt").orElseThrow()
 		assertEquals(0, 0)
 	}
 	
 //	@Test
 //	fun part2() {
-//		val input = Resources.getInput("test-input.txt").orElseThrow()
+//		val input = PuzzleInput.getInput("test-input.txt").orElseThrow()
 //		assertEquals(0, 0)
 //	}
 }
@@ -190,7 +190,7 @@ class Test%3${'$'}s {
 val benchContentsKotlin = """
 package ca.terrylockett.aoc%1${'$'}s.%2${'$'}s
 
-import ca.terrylockett.aoccommon.resources.Resources
+import ca.terrylockett.aoccommon.input.PuzzleInput
 import org.openjdk.jmh.annotations.Benchmark
 import org.openjdk.jmh.annotations.Scope
 import org.openjdk.jmh.annotations.Setup
@@ -202,7 +202,7 @@ open class Bench%3${'$'}s {
 	
 	@Setup
 	fun init() {
-		input = Resources.getInput("input.txt").orElseThrow()
+		input = PuzzleInput.getInput("input.txt").orElseThrow()
 	}
 	
 	@Benchmark

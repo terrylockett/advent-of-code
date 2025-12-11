@@ -7,6 +7,16 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Optional;
 
+/**
+ * @deprecated (<pre>
+ * Use ca.terrylockett.common.input.PuzzleInput instead.
+ * 
+ * I didn't like the name Resources so I renamed it to PuzzleInput.
+ * 
+ * I also didn't want to have a giant updating every previous test so this says as detracted.
+ * </pre>)
+ */
+@Deprecated(since = "2025", forRemoval = false)
 public class Resources {
 	
 	private Resources() {

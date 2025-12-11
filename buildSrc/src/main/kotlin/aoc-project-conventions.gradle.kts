@@ -24,8 +24,8 @@ tasks.getByName("jmh").outputs.upToDateWhen { false }
 
 val libs = the<LibrariesForLibs>()
 dependencies {
-    implementation(project(":common:resources"))
-    jmh(project(":common:resources"))
+    implementation(project(":common"))
+    jmh(project(":common"))
     testImplementation(libs.junitJupiterCore)
 }
 

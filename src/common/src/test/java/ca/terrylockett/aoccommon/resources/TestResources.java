@@ -6,6 +6,7 @@ import java.net.URISyntaxException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Deprecated
 class TestResources {
 
 	@Test
