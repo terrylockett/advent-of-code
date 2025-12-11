@@ -1,6 +1,7 @@
 package ca.terrylockett.aoc2025.day07;
 
 import ca.terrylockett.aoccommon.input.PuzzleInput;
+import ca.terrylockett.aoccommon.structures.Grid;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +20,16 @@ class TestDay07 {
 
 	@Test
 	void testDay07part1() {
-		assertEquals(21, Day07Runner.part1(testInput));
+		Grid grid = Day07Runner.initGrid(testInput);
+		assertEquals(21, Day07Runner.part1(grid));
 	}
+
+	@Test
+	void testDay07part2() {
+		Grid grid = Day07Runner.initGrid(testInput);
+		Day07Runner.part1(grid);
+
+		assertEquals(40L, Day07Runner.part2(grid));
+	}
+
 }

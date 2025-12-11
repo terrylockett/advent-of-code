@@ -61,6 +61,14 @@ public class Grid {
 	public int getColCount() {
 		return colCount;
 	}
+	
+	public List<Character> getRow(int row){
+		List<Character> chars = new ArrayList<>();
+		for (int col=0; col<this.colCount; col++) {
+			chars.add(getCell(row,col));
+		}
+		return chars;
+	}
 
 	public Optional<Character> peekNeighbour(int row, int col, Direction direction) {
 		try {
