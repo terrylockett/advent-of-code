@@ -21,4 +21,9 @@ class TestDay08 {
 	void testDay08part1() {
 		assertEquals(40, Day08Runner.part1(testInput, 10));
 	}
+
+	@Test
+	void testDay08part2() {
+		assertEquals(25272, Day08Runner.part2(testInput));
+	}
 }
